@@ -74,21 +74,106 @@
         .map-responsive:active iframe {
         pointer-events: auto; /* ჩართავს მხოლოდ დაჭერისას */
         }
+        /* --- Universal Navigation Styling --- */
+.universal-nav {
+    background: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li { margin-left: 25px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: #2d5a27; }
+
+.nav-cta {
+    background: #2d5a27;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700 !important;
+    }
+
+   /* Mobile Toggle */
+   .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #2d5a27;
+   }
+
+     @media (max-width: 850px) {
+     .menu-toggle { display: block; }
+     .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 30px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li { margin: 15px 0; }
+    }
+
 
 
     </style>
 </head>
-<body>
+    function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const toggleBtn = document.querySelector('.menu-toggle');
+    navLinks.classList.toggle('active');
+    toggleBtn.innerText = navLinks.classList.contains('active') ? "✕" : "☰";
+     }
 
-    <nav>
-        <div class="logo">KARELI<span>TRAVEL</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">მთავარი</a></li>
-            <li><a href="#destinations">ლოკაციები</a></li>
-            <li><a href="#services">სერვისები</a></li>
-            <li><a href="#tools">ხელსაწყოები</a></li>
-        </ul>
-    </nav>
+<body>
+    <nav class="universal-nav">
+       <div class="nav-container">
+           <a href="index.html" class="logo">KARELI<span>TRAVEL</span></a>
+        
+           <!-- მობილური მენიუს ღილაკი -->
+           <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        
+           <ul class="nav-links">
+               <li><a href="index.html">მთავარი</a></li>
+               <li><a href="index.html#destinations">ლოკაციები</a></li>
+               <li><a href="services.html">ტურები</a></li>
+               <li><a href="cottage.html">კოტეჯები</a></li>
+               <li><a href="https://wa.me" class="nav-cta">დაგვიკავშირდით</a></li>
+           </ul>
+       </div>
+   </nav>
+
+
 
     <header class="hero" id="home">
         <div class="hero-content">
@@ -263,6 +348,7 @@
     
 </body>
 </html>
+
 
 
 
