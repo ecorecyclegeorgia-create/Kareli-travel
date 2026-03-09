@@ -68,6 +68,13 @@
        /* სურათების სიმაღლის კორექტირება */
        .dest-img, .cottage-img { height: 180px !important; }
        }
+        .map-responsive iframe {
+         pointer-events: none; /* გათიშავს რუკას სქროლვისას */
+         }
+        .map-responsive:active iframe {
+        pointer-events: auto; /* ჩართავს მხოლოდ დაჭერისას */
+        }
+
 
     </style>
 </head>
@@ -256,6 +263,7 @@
     
 </body>
 </html>
+
 
 
 
