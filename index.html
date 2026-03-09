@@ -47,6 +47,28 @@
 
         footer { background: #1a1a1a; color: white; padding: 60px 8% 20px; text-align: center; }
         @media (max-width: 768px) { .nav-links { display: none; } }
+        /* მობილური ოპტიმიზაცია (ტელეფონებისთვის) */
+        @media (max-width: 768px) {
+       /* აიძულებს ლოკაციების ბარათებს დალაგდნენ ერთ სვეტად */
+         .grid-container, .pricing-grid, .cottage-grid {
+          grid-template-columns: 1fr !important;
+          padding: 0 10px;
+       }
+
+       /* ამცირებს სათაურების ზომას, რომ ეკრანზე ჩაეტიოს */
+       h1 { font-size: 26px !important; }
+       h2 { font-size: 22px !important; }
+
+       /* აქრობს ნავიგაციას, რომელიც ტელეფონზე ადგილს ართმევს */
+       .nav-links { display: none; }
+
+       /* სექციების დაშორებებს ამცირებს */
+       section { padding: 40px 15px !important; }
+
+       /* სურათების სიმაღლის კორექტირება */
+       .dest-img, .cottage-img { height: 180px !important; }
+       }
+
     </style>
 </head>
 <body>
@@ -237,6 +259,7 @@
     
 </body>
 </html>
+
 
 
 
