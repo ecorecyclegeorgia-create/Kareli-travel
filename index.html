@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta name="description" content="Kareli Travel - ტურები ძამას ხეობაში, ბატეთის ტბაზე, ყინწვისსა და მძოვრეთში. ჯიპ-ტურები და გიდის მომსახურება ქარელში.">
+    <meta name="keywords" content="ქარელი, ძამას ხეობა, ბატეთის ტბა, ყინწვისი, ჯიპ ტური, Kareli, Dzama Valley">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kareli Travel | ძამის ხეობის სრული გზამკვლევი</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        /* --- ბაზისური სტილი --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans Georgian', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #fcfdfc; color: #333; line-height: 1.6; }
+        section { padding: 80px 8%; }
+        h2 { font-size: 32px; color: #2d5a27; text-align: center; margin-bottom: 40px; }
+
+        /* --- ნავიგაცია --- */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: white; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 22px; font-weight: 700; color: #2d5a27; cursor: pointer; }
+        .logo span { color: #8b5e3c; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: #444; font-weight: 500; font-size: 14px; transition: 0.3s; }
+
+        /* --- Hero --- */
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('image/ბატეთი.jpg') center/cover fixed; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .btn { padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-block; cursor: pointer; border: none; }
+        .btn-primary { background: #2d5a27; color: white; }
+        .btn-outline { border: 2px solid white; color: white; margin-left: 10px; }
+
+        /* --- ლოკაციები & ფილტრი --- */
+        .filter-btn { padding: 10px 25px; margin: 5px; border: 2px solid #2d5a27; background: transparent; color: #2d5a27; border-radius: 25px; cursor: pointer; font-weight: 700; }
+        .filter-btn.active { background: #2d5a27; color: white; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .dest-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.4s; }
+        .dest-img { height: 200px; background-size: cover; background-position: center; width: 100%; }
+        .dest-info { padding: 20px; }
+
+        /* --- სერვისები & ფორმა --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 40px 30px; border-radius: 20px; text-align: center; border: 1px solid #eee; }
+        .price { font-size: 24px; font-weight: 700; color: #2d5a27; margin: 20px 0; }
+        
+        .form-container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; }
+
+        footer { background: #1a1a1a; color: white; padding: 60px 8% 20px; text-align: center; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">KARELI<span>TRAVEL</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">მთავარი</a></li>
+            <li><a href="#destinations">ლოკაციები</a></li>
+            <li><a href="#services">სერვისები</a></li>
+            <li><a href="#tools">ხელსაწყოები</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>აღმოაჩინე ძამის ხეობის საიდუმლოებები</h1>
+            <p>ბატეთის ტბა, ყინწვისი და ნამდვილი ქართლის სიმშვიდე.</p>
+            <div class="cta-container">
+                <a href="#services" class="btn btn-primary">დაჯავშნე ტური</a>
+                <a href="#destinations" class="btn btn-outline">დაათვალიერე</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="destinations">
+        <h2>პოპულარული ლოკაციები</h2>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <button class="filter-btn active" onclick="filterLoc('all', event)">ყველა</button>
+            <button class="filter-btn" onclick="filterLoc('nature', event)">ბუნება</button>
+            <button class="filter-btn" onclick="filterLoc('culture', event)">კულტურა</button>
+        </div>
+        <div class="grid-container">
+            <div class="dest-card culture">
+                <div class="dest-img" style="background-image: url('image/ყინწვისი.jpg');"></div>
+                <div class="dest-info"><h4>ყინწვისი</h4><p>XII-XIII სს. ხუროთმოძღვრების ძეგლი.</p><a href="qinzwisi.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+            <div class="dest-card nature">
+                <div class="dest-img" style="background-image: url('image/bateti-xeoba.jpg');"></div>
+                <div class="dest-info"><h4>ბატეთის ტბა</h4><p>ულამაზესი ალპური ტბა.</p><a href="bateti.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+            <div class="dest-card culture">
+                <div class="dest-img" style="background-image: url('image/მძოვრეთი_ციხე.jpg');"></div>
+                <div class="dest-info"><h4>მძოვრეთის ციხე</h4><p>ისტორიული ციხე-ქალაქი და ულამაზესი ხედები.</p><a href="mdzvreti.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+            <div class="dest-card culture">
+                <div class="dest-img" style="background-image: url('image/სარკინეთი.jpg');"></div>
+                <div class="dest-info"><h4>სარკინეთი</h4><p>უნიკალური კლდეში ნაკვეთი ქალაქი.</p><a href="sarkineti.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+            <div class="dest-card nature">
+                <div class="dest-img" style="background-image: url('image/abuxalo.jpg');"></div>
+                <div class="dest-info"><h4>abukhalo</h4><p>25-მეტრიანი ჩანჩქერი და ველური ბუნება.</p><a href="abukhalo.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+            <div class="dest-card nature">
+                <div class="dest-img" style="background-image: url('image/kozifa.jpg');"></div>
+                <div class="dest-info"><h4>kozifa</h4><p></p><a href="kozifa.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+            <div class="dest-card nature">
+                <div class="dest-img" style="background-image: url('image/ortubani.jpg');"></div>
+                <div class="dest-info"><h4>ortubani</h4><p>აგურის შთამბეჭდავი სამრეკლო და სიმშვიდე.</p><a href="ortubani.html" class="btn-primary btn" style="font-size:12px; padding:5px 15px;">ვრცლად</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. სერვისები (მონეტიზაციის გააქტიურება) -->
+      <!-- 4. სერვისები (მონეტიზაციის გააქტიურება) -->
+    <section id="services" style="background: #f4f7f4;">
+        <h2>დაჯავშნე სერვისი</h2>
+        <div class="services-grid">
+           <div class="service-card">
+                <h3>🚐 ტრანსპორტი 4x4</h3>
+                <p>ჯიპ-ტური ბატეთის ტბაზე და აბუხალოში.</p>
+                <div class="price">50₾-დან</div>
+                <!-- შეცვალეთ 995XXXXXXXXX თქვენი ნომრით -->
+                <a href="https://wa.me" class="btn btn-primary" style="width:100%;">დაჯავშნა WhatsApp-ით</a>
+            </div>
+            <div class="service-card" style="border: 2px solid #2d5a27;">
+               <h3>🏡 საცხოვრებელი</h3>
+               <p>საუკეთესო კოტეჯები და საოჯახო სასტუმროები.</p>
+               <div class="price">40₾-დან</div>
+               <a href="cottage.html" class="btn btn-primary" style="width:100%;">მოითხოვე სია</a>
+            </div>
+            <div class="service-card">
+               <h3>🗺️ გიდები</h3>
+               <p>პროფესიონალი გამცილებლები მთელ ხეობაში.</p>
+               <div class="price">70₾-დან</div>
+               <a href="https://wa.me" class="btn btn-primary" style="width:100%;">დაჯავშნა</a>
+            </div>
+        </div>
+    </section>   
+    <!-- ამინდი და რუკა -->
+    <section id="tools">
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+           <iframe src="https://accuweather.com" frameborder="0" style="width: 100%; height: 460px; border-radius:20px; border:1px solid #eee;"></iframe>
+           <section id="map-section">
+           <h2>ინტერაქტიული რუკა</h2>
+           <div class="map-responsive" style="overflow:hidden; padding-bottom:56.25%; position:relative; height:0;">
+           <iframe 
+            src="აქ_ჩასვით_თქვენი_GOOGLE_MAP_ლინკი" 
+            style="left:0; top:0; height:100%; width:100%; position:absolute; border:0;" 
+            allowfullscreen>
+           </iframe>
+    </div>
+    </section>
+       </div>
+    </section>
+
+   
+    <!-- 5. FAQ - ხშირად დასმული კითხვები -->
+    <section id="faq" style="background: #fff; padding: 80px 8%;">
+    <h2 style="margin-bottom: 40px;">ხშირად დასმული კითხვები</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+        
+        <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4 style="color: #2d5a27; cursor: pointer; display: flex; justify-content: space-between;" onclick="toggleFAQ(this)">
+                რა ტიპის ტრანსპორტია საჭირო ძამას ხეობისთვის? <span>+</span>
+            </h4>
+            <p style="display: none; margin-top: 10px; color: #666; font-size: 14px;">
+                ყინწვისსა და ორთუბანში მისვლა მსუბუქი მანქანითაც შესაძლებელია, თუმცა ბატეთის ტბისა და აბუხალოსთვის აუცილებელია <b>მაღალი გამავლობის 4x4 ჯიპი</b>. ჩვენი სააგენტო უზრუნველყოფს სპეციალურად მომზადებულ ტრანსპორტს.
+            </p>
+        </div>
+
+        <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4 style="color: #2d5a27; cursor: pointer; display: flex; justify-content: space-between;" onclick="toggleFAQ(this)">
+                როდის არის საუკეთესო დრო ბატეთის ტბის მოსანახულებლად? <span>+</span>
+            </h4>
+            <p style="display: none; margin-top: 10px; color: #666; font-size: 14px;">
+                საუკეთესო პერიოდია <b>მაისიდან ნოემბრამდე</b>. განსაკუთრებით შთამბეჭდავია ოქტომბრის ბოლო კვირა "ოქროსფერი შემოდგომის" გამო. ზამთარში გზა ხშირად იკეტება დიდთოვლობის გამო.
+            </p>
+        </div>
+
+        <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4 style="color: #2d5a27; cursor: pointer; display: flex; justify-content: space-between;" onclick="toggleFAQ(this)">
+                არის თუ არა ხეობაში კვების ობიექტები? <span>+</span>
+            </h4>
+            <p style="display: none; margin-top: 10px; color: #666; font-size: 14px;">
+                ხეობის სიღრმეში რესტორნები თითქმის არ არის. გირჩევთ, პროდუქტები <b>ქარელში</b> შეიძინოთ. ჩვენ ასევე გთავაზობთ პიკნიკის ორგანიზებას ადგილობრივი ნობათით.
+            </p>
+        </div>
+
+        <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4 style="color: #2d5a27; cursor: pointer; display: flex; justify-content: space-between;" onclick="toggleFAQ(this)">
+                როგორია ჩაცმულობის წესები მონასტრებში? <span>+</span>
+            </h4>
+            <p style="display: none; margin-top: 10px; color: #666; font-size: 14px;">
+                რადგან ძამას ხეობაში ბევრი მოქმედი მონასტერია, აუცილებელია მოკრძალებული სამოსი: ქალბატონებისთვის ქვედაბოლო და თავსაბურავი, მამაკაცებისთვის — გრძელი შარვალი.
+            </p>
+        </div>
+
+    </div>
+    </section>
+    <footer>
+        <div class="logo" style="color: white; margin-bottom: 20px;">KARELI<span>TRAVEL</span></div>
+        <p>&copy; 2026 Kareli Travel. ყველა უფლება დაცულია.</p>
+    </footer>
+
+    <script>
+        // თქვენი ფილტრის ფუნქცია
+        function    filterLoc(category, event) {
+            const cards = document.querySelectorAll('.dest-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) card.style.display = 'block';
+                else card.style.display = 'none';
+            });
+        }
+        // თქვენი ფორმის ფუნქცია
+        document.getElementById('tourForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('მადლობა! თქვენი მოთხოვნა მიღებულია.');
+            this.reset();
+        }
+        function toggleFAQ(element) {
+    const text = element.nextElementSibling;
+    const span = element.querySelector('span');
+    if (text.style.display === "block") {
+        text.style.display = "none";
+        span.innerText = "+";
+    } else {
+        text.style.display = "block";
+        span.innerText = "-";
+    }
+    }
+
+    </script>
+    
+</body>
+</html>
+
+
+
