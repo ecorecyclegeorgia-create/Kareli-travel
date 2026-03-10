@@ -3,134 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>კოტეჯები და სასტუმროები | Kareli Travel</title>
+    <title>კოტეჯები ძამას ხეობაში | Kareli Travel</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
-        /* --- Core Styles --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans Georgian', sans-serif; }
-        body { background-color: #fcfdfc; color: #333; line-height: 1.6; }
+        /* --- ბაზისური სტილი --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans Georgian', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #fcfdfc; color: #333; padding-top: 80px; }
         
-        /* Navigation (Same as Main) */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        /* --- ნავიგაცია --- */
+        .universal-nav { background: white; position: fixed; width: 100%; top: 0; z-index: 2000; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
         .logo { font-size: 22px; font-weight: 700; color: #2d5a27; text-decoration: none; }
         .logo span { color: #8b5e3c; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: #444; font-weight: 500; font-size: 14px; }
 
-        .header-section { background: #2d5a27; color: white; padding: 60px 8%; text-align: center; }
-        
-        .container { padding: 50px 8%; }
-        
-        /* Cottage Cards Grid */
-        .cottage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .cottage-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; display: flex; flex-direction: column; }
-        .cottage-card:hover { transform: translateY(-5px); }
-        
-        .cottage-img { height: 220px; background-size: cover; background-position: center; position: relative; }
-        .badge { position: absolute; top: 15px; left: 15px; background: #e67e22; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
-        
-        .cottage-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .cottage-info h3 { color: #2d5a27; margin-bottom: 10px; }
-        .features { list-style: none; margin: 10px 0; font-size: 13px; color: #666; }
-        .features li { margin-bottom: 5px; }
+        /* --- კოტეჯების ბადე --- */
+        .cottage-header { text-align: center; padding: 60px 5%; background: #f4f7f4; }
+        .cottage-header h1 { color: #2d5a27; font-size: 32px; margin-bottom: 10px; }
 
-        .price-tag { font-size: 20px; font-weight: 700; color: #8b5e3c; margin: 15px 0; }
-        
-        .btn-wa { background: #25D366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; text-align: center; font-weight: 700; transition: 0.3s; }
-        .btn-wa:hover { background: #1ebd59; }
+        .cottage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; padding: 50px 8%; }
+        .cottage-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; }
+        .cottage-card:hover { transform: translateY(-10px); }
 
-        footer { background: #1a1a1a; color: white; padding: 40px; text-align: center; margin-top: 40px; }
+        .cottage-img { height: 250px; background-size: cover; background-position: center; position: relative; }
+        .price-tag { position: absolute; top: 15px; left: 15px; background: #2d5a27; color: white; padding: 8px 15px; border-radius: 8px; font-weight: 700; }
 
+        .cottage-info { padding: 25px; }
+        .cottage-title { font-size: 20px; color: #2d5a27; margin-bottom: 10px; }
+        .features { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .feature-item { background: #f0f3f0; padding: 5px 12px; border-radius: 20px; font-size: 12px; color: #555; }
+
+        .btn-wa { display: block; background: #25d366; color: white; text-align: center; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .btn-wa:hover { background: #128c7e; }
+
+        /* --- მობილური ვერსია --- */
         @media (max-width: 768px) {
-            .container { padding: 30px 5%; }
-            .cottage-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .cottage-grid { padding: 30px 5%; }
+            .cottage-header h1 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">KARELI<span>TRAVEL</span></a>
-        <a href="index.html" style="text-decoration:none; color:#2d5a27; font-weight:bold;">← მთავარი</a>
+    <nav class="universal-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KARELI<span>TRAVEL</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">მთავარი</a></li>
+                <li><a href="index.html#destinations">ლოკაციები</a></li>
+                <li><a href="index.html#services">ტურები</a></li>
+                <li><a href="https://wa.me" style="color: #2d5a27; font-weight: 700;">კონტაქტი</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <header class="header-section">
-        <h1>განთავსება ძამას ხეობაში</h1>
-        <p>საუკეთესო კოტეჯები, სასტუმროები და საოჯახო სახლები</p>
+    <header class="cottage-header">
+        <h1>საუკეთესო კოტეჯები ძამას ხეობაში</h1>
+        <p>შეარჩიეთ სასურველი ადგილი დასასვენებლად და მოგვწერეთ დასაჯავშნად</p>
     </header>
 
-    <div class="container">
-        <div class="cottage-grid">
-
-            <!-- Solo Grand Hotel -->
-            <div class="cottage-card">
-                <div class="cottage-img" style="background-image: url('image/solo-grand.jpg');">
-                    <div class="badge">LUXURY</div>
-                </div>
-                <div class="cottage-info">
-                    <h3>Solo Grand Hotel</h3>
-                    <p>პრემიუმ კლასის სასტუმრო აგარაში. იდეალურია დიდი ჯგუფებისთვის.</p>
-                    <ul class="features">
-                        <li>⭐ რესტორანი და ბარი</li>
-                        <li>⭐ საკონფერენციო დარბაზი</li>
-                    </ul>
-                    <div class="price-tag">120₾-დან</div>
-                    <a href="https://wa.me" class="btn-wa">დაჯავშნა</a>
-                </div>
+    <div class="cottage-grid">
+        <!-- კოტეჯი 1 -->
+        <div class="cottage-card">
+            <div class="cottage-img" style="background-image: url('image/cottage1.jpg');">
+                <div class="price-tag">80₾ / ღამე</div>
             </div>
-
-            <!-- Chalet Loshkineti -->
-            <div class="cottage-card">
-                <div class="cottage-img" style="background-image: url('image/loshkineti.jpg');">
-                    <div class="badge">PREMIUM</div>
+            <div class="cottage-info">
+                <h3 class="cottage-title">მყუდრო კოტეჯი "ბატეთი"</h3>
+                <div class="features">
+                    <span class="feature-item">🔥 ბუხარი</span>
+                    <span class="feature-item">📶 WiFi</span>
+                    <span class="feature-item">🚿 სველი წერტილი</span>
+                    <span class="feature-item">👥 4 სტუმარი</span>
                 </div>
-                <div class="cottage-info">
-                    <h3>შალე ლოშკინეთი</h3>
-                    <p>თანამედროვე შალე ვიტრაჟული ხედებით. საუკეთესოა წყვილებისთვის.</p>
-                    <ul class="features">
-                        <li>🔥 ბუხარი და ტერასა</li>
-                        <li>📸 პანორამული ხედები</li>
-                    </ul>
-                    <div class="price-tag">150₾-დან</div>
-                    <a href="https://wa.me" class="btn-wa">დაჯავშნა</a>
-                </div>
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                    მდებარეობს ბატეთის ტბისკენ მიმავალ გზაზე. იდეალური ადგილია ოჯახური დასვენებისთვის.
+                </p>
+                <a href="https://wa.me?text=გამარჯობა,მაინტერესებს_კოტეჯი_ბატეთი" target="_blank" class="btn-wa">
+                    დაჯავშნა WhatsApp-ით
+                </a>
             </div>
+        </div>
 
-            <!-- Green House Zghuderi -->
-            <div class="cottage-card">
-                <div class="cottage-img" style="background-image: url('image/zghuderi.jpg');">
-                    <div class="badge">ECO CHOICE</div>
-                </div>
-                <div class="cottage-info">
-                    <h3>Green House Zghuderi</h3>
-                    <p>ეკო-მეგობრული გარემო და სიმშვიდე ხეობის კარიბჭესთან.</p>
-                    <ul class="features">
-                        <li>🌿 დიდი მწვანე ეზო</li>
-                        <li>🍷 აგრო-პროდუქტები</li>
-                    </ul>
-                    <div class="price-tag">40₾-დან</div>
-                    <a href="https://wa.me" class="btn-wa">დაჯავშნა</a>
-                </div>
+        <!-- კოტეჯი 2 -->
+        <div class="cottage-card">
+            <div class="cottage-img" style="background-image: url('image/cottage2.jpg');">
+                <div class="price-tag">120₾ / ღამე</div>
             </div>
-
-            <!-- Guest House Imerkhevi -->
-            <div class="cottage-card">
-                <div class="cottage-img" style="background-image: url('image/imerkhevi.jpg');"></div>
-                <div class="cottage-info">
-                    <h3>საოჯახო სასტუმრო იმერხევი</h3>
-                    <p>მდინარე ძამას პირას მდებარე მყუდრო სავანე გვერძინეთში.</p>
-                    <ul class="features">
-                        <li>🌊 მდინარისპირა ტერასა</li>
-                        <li>🐟 კალმახის მენიუ</li>
-                    </ul>
-                    <div class="price-tag">50₾-დან</div>
-                    <a href="https://wa.me" class="btn-wa">დაჯავშნა</a>
+            <div class="cottage-info">
+                <h3 class="cottage-title">პანორამული კოტეჯი "ორთუბანი"</h3>
+                <div class="features">
+                    <span class="feature-item">🌄 მთის ხედი</span>
+                    <span class="feature-item">🍳 სამზარეულო</span>
+                    <span class="feature-item">☕ ტერასა</span>
+                    <span class="feature-item">👥 2 სტუმარი</span>
                 </div>
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                    კოტეჯიდან იშლება ხეობის ულამაზესი ხედები. საუკეთესოა წყვილებისთვის.
+                </p>
+                <a href="https://wa.me?text=გამარჯობა,მაინტერესებს_პანორამული_კოტეჯი" target="_blank" class="btn-wa">
+                    დაჯავშნა WhatsApp-ით
+                </a>
             </div>
+        </div>
 
+        <!-- კოტეჯი 3 -->
+        <div class="cottage-card">
+            <div class="cottage-img" style="background-image: url('image/cottage3.jpg');">
+                <div class="price-tag">150₾ / ღამე</div>
+            </div>
+            <div class="cottage-info">
+                <h3 class="cottage-title">A-Frame კოტეჯი "ყინწვისი"</h3>
+                <div class="features">
+                    <span class="feature-item">🪵 ხის დიზაინი</span>
+                    <span class="feature-item">🍖 ეზო/მაყალი</span>
+                    <span class="feature-item">🚿 სველი წერტილი</span>
+                    <span class="feature-item">👥 6 სტუმარი</span>
+                </div>
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                    თანამედროვე დიზაინის ხის კოტეჯი ყინწვისის მონასტერთან ახლოს.
+                </p>
+                <a href="https://wa.me?text=გამარჯობა,მაინტერესებს_A-Frame_კოტეჯი" target="_blank" class="btn-wa">
+                    დაჯავშნა WhatsApp-ით
+                </a>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Kareli Travel | ყველა უფლება დაცულია</p>
+    <footer style="background: #1a1a1a; color: white; padding: 40px; text-align: center;">
+        <div class="logo" style="color: white; margin-bottom: 10px;">KARELI<span>TRAVEL</span></div>
+        <p style="font-size: 14px; opacity: 0.7;">&copy; 2025 Kareli Travel. ყველა უფლება დაცულია.</p>
     </footer>
 
 </body>
