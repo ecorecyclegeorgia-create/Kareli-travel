@@ -175,13 +175,14 @@
 
     </style>
 </head>
-    function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const toggleBtn = document.querySelector('.menu-toggle');
-    navLinks.classList.toggle('active');
-    toggleBtn.innerText = navLinks.classList.contains('active') ? "✕" : "☰";
-     }
-
+    <script>
+      function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const toggleBtn = document.querySelector('.menu-toggle');
+      navLinks.classList.toggle('active');
+      toggleBtn.innerText = navLinks.classList.contains('active') ? "✕" : "☰";
+       }
+    </script>
 <body>
     <nav class="universal-nav">
        <div class="nav-container">
@@ -377,6 +378,7 @@
     
 </body>
 </html>
+
 
 
 
