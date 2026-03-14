@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>კოტეჯები და სასტუმროები | Kareli Travel</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+    
+    <style>
+        :root {
+            --primary: #2d5a27; --accent: #c5a059; --dark: #1b262c; --bg-light: #fdfdfd; --shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'FiraGO', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--dark); line-height: 1.6; }
+
+        /* ნავიგაცია */
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: var(--dark); padding: 15px 8%; color: white; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero */
+        .hero { height: 40vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hotel/background.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+
+        /* Grid */
+        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: 0.4s; position: relative; }
+        .card:hover { transform: translateY(-10px); }
+
+        /* სლაიდერი */
+        .slider-container { position: relative; height: 250px; overflow: hidden; background: #ddd; }
+        .slides img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: 0.6s ease; cursor: zoom-in; }
+        .slides img.active { opacity: 1; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; }
+        .prev { left: 10px; } .next { right: 10px; }
+        .price-tag { position: absolute; top: 15px; right: 15px; background: var(--primary); color: white; padding: 6px 15px; border-radius: 20px; font-weight: bold; z-index: 5; font-size: 0.8rem; }
+
+        /* ბარათის ტექსტი */
+        .card-body { padding: 25px; }
+        .card-body h3 { color: var(--primary); margin-bottom: 10px; }
+        .features { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin-bottom: 15px; font-size: 0.8rem; color: #666; }
+        .features i { color: var(--accent); }
+        .btn-book { display: block; text-align: center; background: var(--primary); color: white; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; }
+        .btn-book:hover { background: var(--dark); }
+
+        /* Lightbox (გადიდება) */
+        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .modal-img { max-width: 85%; max-height: 80%; border: 3px solid white; border-radius: 5px; }
+        .modal-arrow { position: absolute; top: 50%; background: none; border: none; color: white; font-size: 3rem; cursor: pointer; padding: 20px; }
+        .prev-modal { left: 20px; } .next-modal { right: 20px; }
+        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+
+        /* მცურავი WhatsApp */
+        .float-wa { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1001; }
+    
+           .map-link {
+         color: var(--primary);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 5px;
+        }
+
+        .map-link:hover {
+        color: var(--accent);
+        }
+
+        /* თუ ხატულა მაინც არ ჩანს, დაამატეთ ეს: */
+        .fa-map-location-dot, .fas {
+        font-family: "Font Awesome 6 Free" !important;
+        font-weight: 900;
+        }
+
+        .site-footer { background: var(--dark); color: #ecf0f1; padding: 60px 0 20px; margin-top: 50px; border-top: 4px solid var(--accent); }
+       .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding: 0 20px; }
+       .footer-column h3, .footer-column h4 { color: var(--accent); margin-bottom: 20px; font-size: 1.2rem; }
+       .footer-column p { font-size: 0.9rem; color: #bdc3c7; line-height: 1.6; }
+       .footer-column ul { list-style: none; }
+       .footer-column ul li { margin-bottom: 12px; font-size: 0.9rem; color: #bdc3c7; }
+       .footer-column ul li a { color: #bdc3c7; text-decoration: none; transition: 0.3s; }
+       .footer-column ul li a:hover { color: var(--accent); padding-left: 5px; }
+    
+       .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+       .social-icons a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); display: flex; justify-content: center; align-items: center; border-radius: 50%; color: white; text-decoration: none; transition: 0.3s; }
+       .social-icons a:hover { background: var(--accent); transform: translateY(-3px); }
+    
+       .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #7f8c8d; }
+
+       /* კონფიდენციალურობის მოდალი */
+       .privacy-modal { display: none; position: fixed; z-index: 10001; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+       .privacy-content { background: white; color: var(--dark); padding: 40px; border-radius: 15px; max-width: 500px; width: 90%; position: relative; text-align: center; }
+       .close-privacy { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; }
+
+       @media (max-width: 768px) { .footer-container { text-align: center; } .social-icons { justify-content: center; } }
+</style>
+
+
+    
+    </style>
+</head>
+<body>
+
+     <!-- კონფიდენციალურობის ფანჯარა (Modal) -->
+    <div id="privacyModal" class="privacy-modal" onclick="closePrivacy()">
+    <div class="privacy-content" onclick="event.stopPropagation()">
+        <span class="close-privacy" onclick="closePrivacy()">&times;</span>
+        <h2>კონფიდენციალურობის პოლიტიკა</h2>
+        <p>Kareli Travel პატივს სცემს თქვენს კონფიდენციალურობას. ჩვენ არ ვაგროვებთ თქვენს პირად მონაცემებს ავტომატურად. დაჯავშნისას მითითებული ინფორმაცია გამოიყენება მხოლოდ თქვენთან დასაკავშირებლად და არ გადაეცემა მესამე პირებს.</p>
+        <button class="btn-book" onclick="closePrivacy()" style="width: auto; margin-top: 20px; padding: 10px 30px;">გასაგებია</button>
+    </div>
+    </div>
+    <nav class="navbar">
+        <a href="index.html" class="logo"> Kareli <span>Travel</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">მთავარი</a></li>
+            <li><a href="cottage.html">კოტეჯები</a></li>
+            <li><a href="#">კონტაქტი</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>იპოვე სიმშვიდე</h1>
+        <p>საუკეთესო დასასვენებელი კოტეჯები რეგიონში</p>
+    </header>
+
+    <div class="container">
+        <div class="grid" id="main-grid">
+            <!-- აქ დაგენერირდება 8 კოტეჯი JS-ით -->
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="imgModal" class="modal">
+        <span class="close-modal" onclick="closeFullImg()">&times;</span>
+        <button class="modal-arrow prev-modal" onclick="changeModalImg(-1)">&#10094;</button>
+        <img id="fullImg" class="modal-img">
+        <button class="modal-arrow next-modal" onclick="changeModalImg(1)">&#10095;</button>
+    </div>
+
+    <a href="https://wa.me/995599395043/" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i> მოგვწერეთ</a>
+             <!-- საიტის Footer -->
+    <footer class="site-footer">
+    <div class="footer-container">
+        <!-- სვეტი 1: აღწერა -->
+        <div class="footer-column">
+            <h3 class="footer-logo"><i class="fas fa-mountain-sun"></i> Kareli Travel</h3>
+            <p>აღმოაჩინე ქარელის მუნიციპალიტეტის საუკეთესო დასასვენებელი ადგილები. ჩვენ გთავაზობთ სიმშვიდესა და კომფორტს ბუნების წიაღში.</p>
+        </div>
+
+        <!-- სვეტი 2: სწრაფი ბმულები -->
+        <div class="footer-column">
+            <h4>სწრაფი ბმულები</h4>
+            <ul>
+                <li><a href="index.html">მთავარი</a></li>
+                <li><a href="cottage.html">კოტეჯები</a></li>
+                <li><a href="javascript:void(0)" onclick="openPrivacy()">კონფიდენციალურობა</a></li>
+            </ul>
+        </div>
+
+        <!-- სვეტი 3: კონტაქტი -->
+        <div class="footer-column">
+            <h4>კონტაქტი</h4>
+            <ul class="contact-list">
+                <li><i class="fas fa-phone"></i> +995 599 39 50 43</li>
+                <li><i class="fas fa-envelope"></i> info@karelitravel.ge</li>
+                <li><i class="fas fa-location-dot"></i> ქარელი, საქართველო</li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Kareli Travel. ყველა უფლება დაცულია. შექმნილია EcoRecycleGeorgia-ს მიერ.</p>
+    </div>
+    </footer>
+
+    <script>
+        const accommodations = [
+            { name: "სასტუმრო ბოკნეთი", loc: "სოფ. ბოკნეთი", mapUrl: "https://maps.app.goo.gl/L39MbMKT8nveyXgw9", price: "პრემიუმ კლასი", desc: "დახვეწილი გარემო და პანორამული ხედები ძამას ხეობის დასაწყისში.", imgs: ["hotel/bokneti1.jpg", "hotel/bokneti2.jpg", "hotel/bokneti3.jpg", "hotel/bokneti4.jpg", "hotel/bokneti5.jpg", "hotel/bokneti6.jpg"] },
+            { name: "შალე ლოშკინეთი", loc: "ძამას ხეობა", mapUrl: "https://maps.app.goo.gl/ZK8m2yykwZrUsE8H6", price: "180₾ / ღამე", desc: "ეკო-კოტეჯი ტყეში, გათვლილი 6 პერსონაზე. იდეალურია ოჯახისთვის.", imgs: ["hotel/loshkineti1.jpg", "hotel/loshkineti2.jpg", "hotel/loshkineti3.jpg", "hotel/loshkineti4.jpg", "hotel/loshkineti5.jpg", "hotel/loshkineti6.jpg" ] },
+            { name: "მწვანე კოტეჯი", loc: "სურამის ტყე", mapUrl: "https://maps.app.goo.gl/w64NQmsxh4Pj7HL9A", price: "150₾ / ღამე", desc: "მყუდრო ხის სახლი საუკეთესო ხედით, სადაც სიმშვიდე გარანტირებულია.", imgs: ["hotel/green1.jpg", "hotel/green2.jpg", "hotel/green3.jpg", "hotel/green4.jpg", "hotel/green5.jpg", "hotel/green6.jpg"] },
+            { name: "სასტუმრო სურამი შალე", loc: "სურამი", mapUrl: "https://maps.app.goo.gl/GjoH2BKnLSkm3h647", price: "200₾ / ღამე", desc: "თანამედროვე დიზაინი და საუკეთესო გარემო ტყის შიგნით.", imgs: ["hotel/surami1.jpg", "hotel/surami2.jpg", "hotel/surami3.jpg", "hotel/surami4.jpg", "hotel/surami5.jpg", "hotel/surami6.jpg",] },
+            { name: "საოჯახო სასტუმრო ძამა", loc: "ქარელი", mapUrl: "https://maps.app.goo.gl/TMUzHvs4NR7PNWGw8", price: "100₾ / ღამე", desc: "ავთენტური ქართული სტუმარ-მასპინძლობა და ნატურალური პროდუქტები.", imgs: ["hotel/dzama1.jpg", "hotel/dzama2.jpg", "hotel/dzama3.jpg", "hotel/dzama4.jpg", "hotel/dzama5.jpg", "hotel/dzama6.jpg",] },
+            { name: "ატენის კოტეჯები", loc: "ატენის ხეობა", mapUrl: "https://maps.app.goo.gl/dXAWVoKzAqnpyMxj9", price: "220₾ / ღამე", desc: "ღვინის ტურიზმი და დასვენება ერთ სივრცეში გორთან ახლოს.", imgs: ["hotel/ateni1.jpg", "hotel/ateni2.jpg", "hotel/ateni3.jpg", "hotel/ateni4.jpg", "hotel/ateni5.jpg", "hotel/ateni6.jpg",] },
+            { name: "ტყის სახლი", loc: "იმერხევი", mapUrl: "https://maps.app.goo.gl/q1k4CaeuM75DJHxL9", price: "120₾ / ღამე", desc: "განმარტოება ბუნებაში, სადაც მხოლოდ ჩიტების ჭიკჭიკი ისმის.", imgs: ["hotel/imerxevi1.jpg", "hotel/imerxevi2.jpg", "hotel/imerxevi3.jpg", "hotel/imerxevi4.jpg", "hotel/imerxevi5.jpg", "hotel/imerxevi6.jpg",] },
+            { name: "რივერსაიდ კოტეჯი", loc: "ძამას ხეობა", mapUrl: "https://maps.app.goo.gl/JoJTT3SWMqgNzfnS6", price: "170₾ / ღამე", desc: "მდინარის პირას მდებარე კოტეჯი ტერასით და მოსასვენებელი სივრცით.", imgs: ["hotel/xeoba1.jpg", "hotel/xeoba2.jpg", "hotel/xeoba3.jpg", "hotel/xeoba4.jpg", "hotel/xeoba5.jpg", "hotel/xeoba6.jpg",] }
+        ];
+
+
+            const grid = document.getElementById('main-grid');
+                accommodations.forEach((acc, i) => {
+    grid.innerHTML += `
+        <div class="card">
+            <div class="slider-container" id="gal-${i}">
+                <div class="slides">
+                    ${acc.imgs.map((img, imgIdx) => `<img src="${img}" class="${imgIdx===0?'active':''}" onclick="openFullImg(${imgIdx}, 'gal-${i}')">`).join('')}
+                </div>
+                <button class="slider-btn prev" onclick="moveSlide(this, -1)">❮</button>
+                <button class="slider-btn next" onclick="moveSlide(this, 1)">❯</button>
+                <div class="price-tag">${acc.price}</div>
+            </div>
+            <div class="card-body">
+                <h3>${acc.name}</h3>
+                <ul class="features">
+                    <li><i class="fas fa-location-dot"></i> ${acc.loc}</li>
+                    <!-- რუკის ღილაკი -->
+                    <li><a href="${acc.mapUrl || '#'}" target="_blank" class="map-link">
+                        <i class="fas fa-map-location-dot"></i> რუკაზე ნახვა
+                    </a></li>
+                </ul>
+                <p>${acc.desc}</p>
+                <a href="https://wa.me/995599395043/" class="btn-book">დაჯავშნა</a>
+            </div>
+        </div>`;
+       });
+
+        let currentGallery = [];
+        let currentIdx = 0;
+
+        function openFullImg(index, galId) {
+            currentGallery = Array.from(document.getElementById(galId).querySelectorAll('img')).map(i => i.src);
+            currentIdx = index;
+            document.getElementById("imgModal").style.display = "flex";
+            updateModalImg();
+        }
+
+        function updateModalImg() { document.getElementById("fullImg").src = currentGallery[currentIdx]; }
+        function changeModalImg(dir) { currentIdx = (currentIdx + dir + currentGallery.length) % currentGallery.length; updateModalImg(); }
+        function closeFullImg() { document.getElementById("imgModal").style.display = "none"; }
+
+        function moveSlide(btn, dir) {
+            const slides = btn.closest('.slider-container').querySelectorAll('.slides img');
+            let active = Array.from(slides).findIndex(img => img.classList.contains('active'));
+            slides[active].classList.remove('active');
+            slides[(active + dir + slides.length) % slides.length].classList.add('active');
+        }
+
+        function openPrivacy() { document.getElementById("privacyModal").style.display = "flex"; }
+        function closePrivacy() { document.getElementById("privacyModal").style.display = "none"; }
+
+
+    </script>
+</body>
+</html>
