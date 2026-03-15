@@ -55,6 +55,18 @@
             .loc-hero { height: 35vh; }
             .pricing-container { grid-template-columns: 1fr; }
         }
+        /* --- მობილური ოპტიმიზაცია --- */
+            @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background: white; padding: 30px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 2500; }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; }
+            .hero-content h1 { font-size: 28px; }
+             section { padding: 40px 15px !important; }
+            .grid-container { grid-template-columns: 1fr !important; }
+            .responsive-map { width: 100%; border-radius: 0; border: none; }
+            .responsive-map iframe { height: 350px; }
+            }
     </style>
 </head>
 <body>
