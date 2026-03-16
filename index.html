@@ -40,7 +40,7 @@
 
         /* --- ლოკაციები & ფილტრი --- */
         .filter-btn { padding: 10px 25px; margin: 5px; border: 2px solid #2a5a23; background: transparent; color: #31c71d; border-radius: 25px; cursor: pointer; font-weight: 700; }
-        .filter-btn.active { background: #194214; color: rgb(47, 196, 18); }
+        .filter-btn.active { background: green; color: white; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .dest-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.4s; }
         .dest-img { height: 200px; background-size: cover; background-position: center; width: 100%; }
@@ -132,7 +132,7 @@
 
     <!-- ლოკაციები -->
     <section id="destinations">
-        <h2 style="background: green color: white">პოპულარული ლოკაციები</h2>
+        <h2 style="color: green">პოპულარული ლოკაციები</h2>
         <div style="text-align: center; margin-bottom: 40px;">
             <button class="filter-btn active" onclick="filterLoc('all', event)">ყველა</button>
             <button class="filter-btn" onclick="filterLoc('nature', event)">ბუნება</button>
