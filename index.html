@@ -26,25 +26,28 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
-        /* ზოგადი ფონტი მთელ საიტზე */
-body {
-    font-family: 'Noto Sans Georgian', sans-serif;
-    margin: 0;
-    line-height: 1.6;
-     }
+        .social-icons a.fb:hover { background: #1877F2; }
+    .social-icons a.ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
 
-/* ნავიგაციის (Header) გასწორება */
-   header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 5%;
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-  }
+        /* ზოგადი ფონტი მთელ საიტზე */
+   body {
+       font-family: 'Noto Sans Georgian', sans-serif;
+       margin: 0;
+       line-height: 1.6;
+       }
+
+   /* ნავიგაციის (Header) გასწორება */
+      header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 15px 5%;
+         background: #fff;
+         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+         position: sticky;
+         top: 0;
+         z-index: 1000;
+     }
 
   header ul {
       display: flex;
@@ -329,43 +332,56 @@ body {
     </div>
     </section>
 
-            <section id="social-feed" style="background: #fff; padding: 60px 5%; border-top: 1px solid #eee;">
-           <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start;">
+            <!-- სოციალური ქსელების სექცია -->
+<section id="social-integration" style="background: #ffffff; padding: 60px 8%; border-top: 2px solid #f1f1f1;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px;">
         
-            <!-- Instagram სექცია -->
-            <div class="insta-box">
-                <h3 style="color: #E4405F; margin-bottom: 15px;"><i class="fab fa-instagram"></i> Instagram-დან</h3>
-                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">მოგვყევით ინსტაგრამზე და ნახეთ კადრები ჯიპ-ტურებიდან!</p>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                    <!-- აქ ჩასვი შენი საუკეთესო 6 ფოტო -->
-                    <img src="image/bateti.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 5px;">
-                    <img src="image/kinwvisi.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 5px;">
-                    <img src="image/abuxalo.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 5px;">
-                    <img src="hotel/ezo2.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 5px;">
-                    <img src="image/bateti-xeoba.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 5px;">
-                    <img src="image/mdzovreti.jpg" style="width: 100%; height: 100px; object-fit: cover; border-radius: 5px;">
-                </div>
-                <a href="შენი_ინსტაგრამის_ლინკი" target="_blank" class="btn-outline" style="display: inline-block; margin-top: 15px; color: #E4405F; border-color: #E4405F; font-size: 13px; padding: 8px 15px;">ნახე მეტი ინსტაგრამზე</a>
+        <!-- Instagram-ის ვიზუალური ბლოკი -->
+        <div class="insta-preview">
+            <h3 style="color: #E4405F; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fab fa-instagram" style="font-size: 1.5rem;"></i> Instagram @KareliTravel
+            </h3>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">დაათვალიერეთ ჩვენი ყოველდღიური თავგადასავლები და კოტეჯების ხედები.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                <!-- აქ ჩაანაცვლე შენი რეალური ფოტოებით -->
+                <div class="insta-img" style="background-image: url('image/bateti.jpg'); height: 100px; background-size: cover; border-radius: 8px; cursor: pointer;"></div>
+                <div class="insta-img" style="background-image: url('image/kinwvisi.jpg'); height: 100px; background-size: cover; border-radius: 8px; cursor: pointer;"></div>
+                <div class="insta-img" style="background-image: url('hotel/ezo2.jpg'); height: 100px; background-size: cover; border-radius: 8px; cursor: pointer;"></div>
+                <div class="insta-img" style="background-image: url('image/mdzovreti.jpg'); height: 100px; background-size: cover; border-radius: 8px; cursor: pointer;"></div>
+                <div class="insta-img" style="background-image: url('image/abuxalo.jpg'); height: 100px; background-size: cover; border-radius: 8px; cursor: pointer;"></div>
+                <div class="insta-img" style="background-image: url('image/bateti-xeoba.jpg'); height: 100px; background-size: cover; border-radius: 8px; cursor: pointer;"></div>
             </div>
+            
+            <a href="https://instagram.com" target="_blank" class="btn-book" style="display: block; margin-top: 20px; text-align: center; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
+                მოგვყევით Instagram-ზე
+            </a>
+        </div>
 
-            <!-- Facebook სექცია -->
-            <div class="fb-box">
-                <h3 style="color: #1877F2; margin-bottom: 15px;"><i class="fab fa-facebook"></i> მოგვიწონეთ Facebook-ზე</h3>
-                <!-- FB Page Plugin -->
-                <div class="fb-page" 
-                     data-href="https://www.facebook.com" 
-                     data-tabs="timeline" 
-                     data-width="400" 
-                     data-height="300" 
-                     data-small-header="false" 
-                     data-adapt-container-width="true" 
-                     data-hide-cover="false" 
-                     data-show-facepile="true">
-                </div>
-                </div>
-
+        <!-- Facebook-ის აქტიური ვიჯეტი -->
+        <div class="fb-preview">
+            <h3 style="color: #1877F2; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fab fa-facebook-square" style="font-size: 1.5rem;"></i> Kareli Travel Facebook-ზე
+            </h3>
+            <!-- FB Page Plugin (ავტომატური ზომა) -->
+            <div class="fb-page" 
+                data-href="https://www.facebook.com" 
+                data-tabs="timeline" 
+                data-width="500" 
+                data-height="400" 
+                data-small-header="false" 
+                data-adapt-container-width="true" 
+                data-hide-cover="false" 
+                data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com">Kareli Travel</a>
+                </blockquote>
             </div>
-    </section>
+        </div>
+
+    </div>
+</section>
+
 
 
 <footer style="background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px;">
@@ -453,5 +469,8 @@ body {
       "url": "https://karelitravel.ge"
       }
     </script>
+    <div id="fb-root"></div>
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net"></script>
+
 </body>
 </html>
