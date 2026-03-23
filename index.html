@@ -26,8 +26,11 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
-        .social-icons a.fb:hover { background: #1877F2; }
-    .social-icons a.ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+         .social-icons a:hover {
+         transform: translateY(-3px);
+         }
+        .social-icons a.fb:hover { color: #1877F2; } /* Facebook ლურჯი */
+         .social-icons a.ig:hover { color: #E4405F; } /* Instagram-ის ფერი */
 
         /* ზოგადი ფონტი მთელ საიტზე */
    body {
@@ -334,10 +337,18 @@
 <footer style="background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px;">
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; padding: 0 5%;">
         
-        <!-- 1. ლოგო და სოციალური ქსელები -->
-        <div>
-            <div class="footer-logo" style="font-size: 24px; font-weight: 700; margin-bottom: 15px;">KARELI<span style="color: #8b5e3c;">TRAVEL</span></div>
-            <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">თქვენი მეგზური ძამას ხეობის მისტიკურ სამყაროში.</p>
+       <!-- 1. ლოგო და სოციალური ქსელები -->
+      <div>
+          <div class="footer-logo" style="font-size: 24px; font-weight: 700; margin-bottom: 15px;">KARELI<span style="color: #8b5e3c;">TRAVEL</span></div>
+              <p style="font-size: 14px; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">თქვენი მეგზური ძამას ხეობის მისტიკურ სამყაროში.</p>
+    
+              <!-- სოციალური ღილაკები -->
+              <div class="social-icons" style="display: flex; gap: 15px;">
+              <a href="https://www.facebook.com" target="_blank" style="color: white; font-size: 22px; transition: 0.3s;" class="fb"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.instagram.com" target="_blank" style="color: white; font-size: 22px; transition: 0.3s;" class="ig"><i class="fab fa-instagram"></i></a>
+           </div>
+      </div>
+            
         <!-- 2. ნავიგაცია -->
         <div>
             <h4 style="margin-bottom: 20px; color: #1db409;">ნავიგაცია</h4>
@@ -361,10 +372,6 @@
         <p style="font-size: 12px; opacity: 0.5;">© 2026 Kareli Travel. ყველა უფლება დაცულია.</p>
     </div>
 </footer>
-
-
-     
-
       <a href="https://wa.me/995599395043/" 
           style="position:fixed; bottom:20px; right:20px; background:#25d366; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index:10000; text-decoration:none;" 
           target="_blank">📞</a>
@@ -380,11 +387,12 @@
         }
 
         function filterLoc(category, event) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('.dest-card').forEach(card => {
-                card.style.display = (category === 'all' || card.classList.contains(category)) ? 'block' : 'none';
-            });
+           document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+           event.target.classList.add('active');
+           document.querySelectorAll('.dest-card').forEach(card => {
+            // card.parentElement არის <a> თეგი, რომელსაც რეალურად ვმალავთ
+            card.parentElement.style.display = (category === 'all' || card.classList.contains(category)) ? 'block' : 'none';
+          });
         }
 
         function toggleFAQ(element) {
@@ -407,8 +415,6 @@
       "url": "https://karelitravel.ge"
       }
     </script>
-    <div id="fb-root"></div>
-   <script async defer crossorigin="anonymous" src="https://connect.facebook.net"></script>
-
+    
 </body>
 </html>
