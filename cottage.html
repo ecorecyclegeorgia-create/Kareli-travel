@@ -200,32 +200,41 @@
         ];
 
 
-            const grid = document.getElementById('main-grid');
-                accommodations.forEach((acc, i) => {
-    grid.innerHTML += `
-        <div class="card">
-            <div class="slider-container" id="gal-${i}">
-                <div class="slides">
-                    ${acc.imgs.map((img, imgIdx) => `<img src="${img}" class="${imgIdx===0?'active':''}" onclick="openFullImg(${imgIdx}, 'gal-${i}')">`).join('')}
+        const grid = document.getElementById('main-grid');
+          /* შეცვალე შენი accommodations ციკლი ამ კოდით */
+    accommodations.forEach((acc, i) => {
+        grid.innerHTML += `
+            <div class="card">
+                <div class="slider-container" id="gal-${i}">
+                    <div class="slides">
+                        ${acc.imgs.map((img, imgIdx) => `<img src="${img}" class="${imgIdx===0?'active':''}" onclick="openFullImg(${imgIdx}, 'gal-${i}')">`).join('')}
+                    </div>
+                    <button class="slider-btn prev" onclick="moveSlide(this, -1)">❮</button>
+                    <button class="slider-btn next" onclick="moveSlide(this, 1)">❯</button>
+                    <div class="price-tag">${acc.price}</div>
                 </div>
-                <button class="slider-btn prev" onclick="moveSlide(this, -1)">❮</button>
-                <button class="slider-btn next" onclick="moveSlide(this, 1)">❯</button>
-                <div class="price-tag">${acc.price}</div>
-            </div>
-            <div class="card-body">
-                <h3>${acc.name}</h3>
-                <ul class="features">
-                    <li><i class="fas fa-location-dot"></i> ${acc.loc}</li>
-                    <!-- რუკის ღილაკი -->
-                    <li><a href="${acc.mapUrl || '#'}" target="_blank" class="map-link">
-                        <i class="fas fa-map-location-dot"></i> რუკაზე ნახვა
-                    </a></li>
-                </ul>
-                <p>${acc.desc}</p>
-                <a href="https://wa.me/995599395043/" class="btn-book">დაჯავშნა</a>
-            </div>
-        </div>`;
-       });
+                <div class="card-body">
+                    <h3>${acc.name}</h3>
+                
+                    <!-- ლოკაციის ბლოკი -->
+                    <div style="background: #f1f8f0; padding: 10px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--primary);">
+                        <p style="margin: 0; font-size: 0.9rem; font-weight: bold; color: var(--primary);">
+                            <i class="fas fa-location-dot"></i> მდებარეობა: ${acc.loc}
+                        </p>
+                        <a href="${acc.mapUrl}" target="_blank" class="map-link" style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-map-location-dot"></i> ნახვა Google Maps-ზე ❯
+                        </a>
+                    </div>
+
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 20px;">${acc.desc}</p>
+                
+                    <a href="https://wa.me, მაინტერესებს ${acc.name}" class="btn-book">
+                        <i class="fab fa-whatsapp"></i> დაჯავშნა
+                    </a>
+                </div>
+            </div>`;
+     });
+      
 
         let currentGallery = [];
         let currentIdx = 0;
