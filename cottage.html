@@ -100,6 +100,20 @@
        .close-privacy { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; }
 
        @media (max-width: 768px) { .footer-container { text-align: center; } .social-icons { justify-content: center; } }
+          /* ჰოვერ ეფექტები ღილაკებისთვის */
+       .floating-contacts a:hover {
+           transform: scale(1.1) translateY(-5px);
+           filter: brightness(1.1);
+       }
+
+       /* მობილურზე ოდნავ დავაპატარაოთ, რომ ხედი არ გადატვირთოს */
+       @media (max-width: 768px) {
+           .floating-contacts a {
+              width: 50px !important;
+              height: 50px !important;
+              font-size: 22px !important;
+          }
+       }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNL2MVEKS8"></script>
@@ -151,8 +165,20 @@
         <button class="modal-arrow next-modal" onclick="changeModalImg(1)">&#10095;</button>
     </div>
 
-    <a href="https://wa.me/995599395043/" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i> მოგვწერეთ</a>
-             <!-- საიტის Footer -->
+        <!-- მცურავი კონტაქტები -->
+    <div class="floating-contacts" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 15px;">
+    
+        <!-- Facebook მცურავი ღილაკი -->
+        <a href="https://www.facebook.com" 
+           target="_blank"
+           style="background: #1877F2; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; text-decoration: none; font-weight: bold;">
+           f
+        </a>
+
+        <!-- WhatsApp მცურავი ღილაკი -->
+        <a href="https://wa.me/995599395043" target="_blank"style="background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; text-decoration: none;">
+           <i class="fab fa-whatsapp"></i></a>
+    </div>
     <footer class="site-footer">
     <div class="footer-container">
         <!-- სვეტი 1: აღწერა -->
