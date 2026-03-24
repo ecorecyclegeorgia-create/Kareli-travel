@@ -201,50 +201,72 @@
        <img id="lightbox-img" src="" style="max-width: 90%; max-height: 80%; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
        <button onclick="nextImg()" style="position: absolute; right: 20px; background: none; border: none; color: white; font-size: 50px; cursor: pointer;">&#10095;</button>
     </div>
-    <script>
-    let currentImgIdx = 0;
-    const images = Array.from(document.querySelectorAll('.img-grid img'));
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+     <script>
+        let currentImgIdx = 0;
+        let touchstartX = 0;
+        let touchendX = 0;
 
-    // ყველა სურათზე დაჭერის ფუნქციის მიბმა
-    images.forEach((img, index) => {
-        img.onclick = () => {
-            currentImgIdx = index;
-            openLightbox(img.src);
-        };
-    });
+       const images = Array.from(document.querySelectorAll('.img-grid img'));
+       const lightbox = document.getElementById('lightbox');
+       const lightboxImg = document.getElementById('lightbox-img');
 
-    function openLightbox(src) {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = src;
-        document.body.style.overflow = 'hidden'; // სკროლის გათიშვა
-    }
+       images.forEach((img, index) => {
+           img.onclick = () => {
+               currentImgIdx = index;
+               openLightbox(img.src);
+           };
+       });
 
-    function closeLightbox() {
-        lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+       function openLightbox(src) {
+          lightbox.style.display = 'flex';
+           lightboxImg.src = src;
+           document.body.style.overflow = 'hidden';
+       }
 
-    function nextImg() {
-        currentImgIdx = (currentImgIdx + 1) % images.length;
-        lightboxImg.src = images[currentImgIdx].src;
-    }
+       function closeLightbox() {
+           lightbox.style.display = 'none';
+           document.body.style.overflow = 'auto';
+       }
 
-    function prevImg() {
-        currentImgIdx = (currentImgIdx - 1 + images.length) % images.length;
-        lightboxImg.src = images[currentImgIdx].src;
-    }
+       // გადაფურცვლის ლოგიკა
+       function handleGesture() {
+           if (touchendX < touchstartX - 50) nextImg(); // მარცხნივ გაწევა -> შემდეგი
+           if (touchendX > touchstartX + 50) prevImg(); // მარჯვნივ გაწევა -> წინა
+       }
 
-    // კლავიატურით მართვა (Esc, ისრები)
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.style.display === 'flex') {
-            if (e.key === "Escape") closeLightbox();
-            if (e.key === "ArrowRight") nextImg();
-            if (e.key === "ArrowLeft") prevImg();
-        }
-    });
+       lightbox.addEventListener('touchstart', e => {
+           touchstartX = e.changedTouches[0].screenX;
+       });
+
+       lightbox.addEventListener('touchend', e => {
+           touchendX = e.changedTouches[0].screenX;
+           handleGesture();
+       });
+
+       // ფოტოს გარეთ დაჭერით დახურვა
+       lightbox.onclick = (e) => {
+           if (e.target === lightbox) closeLightbox();
+       };
+
+       function nextImg() {
+           currentImgIdx = (currentImgIdx + 1) % images.length;
+           lightboxImg.src = images[currentImgIdx].src;
+       }
+
+       function prevImg() {
+           currentImgIdx = (currentImgIdx - 1 + images.length) % images.length;
+           lightboxImg.src = images[currentImgIdx].src;
+       }
+
+       document.addEventListener('keydown', (e) => {
+           if (lightbox.style.display === 'flex') {
+               if (e.key === "Escape") closeLightbox();
+               if (e.key === "ArrowRight") nextImg();
+               if (e.key === "ArrowLeft") prevImg();
+           }
+       });
     </script>
+
 
 
 </body>
